@@ -1,0 +1,1813 @@
+{
+  "schema": 1,
+  "source_bundle": "C:\\Users\\UsEr\\AppData\\LocalLow\\xd\\Heartopia\\AssetBundle\\46df6d27adea_oversea.ab",
+  "table_asset": "Assets/resource_index/binary/table/oversea.bytes",
+  "table_version": "1.1.0",
+  "offsets": {
+    "data_start": 54,
+    "draw_canvas": 1879903,
+    "draw_custom": 1881036,
+    "draw_segment": 1887523,
+    "draw_canvas_end": 1881036,
+    "draw_custom_end": 1883761,
+    "draw_segment_end": 1888643
+  },
+  "canvas": [
+    {
+      "id": 1,
+      "canvas_type": "16:9",
+      "custom_id": 0,
+      "width": 30,
+      "height": 18,
+      "icon": "draw_canvas_1",
+      "stage": 4
+    },
+    {
+      "id": 2,
+      "canvas_type": "16:9",
+      "custom_id": 0,
+      "width": 50,
+      "height": 28,
+      "icon": "draw_canvas_1",
+      "stage": 4
+    },
+    {
+      "id": 3,
+      "canvas_type": "16:9",
+      "custom_id": 0,
+      "width": 100,
+      "height": 56,
+      "icon": "draw_canvas_1",
+      "stage": 4
+    },
+    {
+      "id": 4,
+      "canvas_type": "16:9",
+      "custom_id": 0,
+      "width": 150,
+      "height": 84,
+      "icon": "draw_canvas_1",
+      "stage": 4
+    },
+    {
+      "id": 5,
+      "canvas_type": "4:3",
+      "custom_id": 0,
+      "width": 30,
+      "height": 24,
+      "icon": "draw_canvas_3",
+      "stage": 2
+    },
+    {
+      "id": 6,
+      "canvas_type": "4:3",
+      "custom_id": 0,
+      "width": 50,
+      "height": 38,
+      "icon": "draw_canvas_3",
+      "stage": 2
+    },
+    {
+      "id": 7,
+      "canvas_type": "4:3",
+      "custom_id": 0,
+      "width": 100,
+      "height": 76,
+      "icon": "draw_canvas_3",
+      "stage": 2
+    },
+    {
+      "id": 8,
+      "canvas_type": "4:3",
+      "custom_id": 0,
+      "width": 150,
+      "height": 114,
+      "icon": "draw_canvas_3",
+      "stage": 2
+    },
+    {
+      "id": 9,
+      "canvas_type": "1:1",
+      "custom_id": 0,
+      "width": 30,
+      "height": 30,
+      "icon": "draw_canvas_5",
+      "stage": 0
+    },
+    {
+      "id": 10,
+      "canvas_type": "1:1",
+      "custom_id": 0,
+      "width": 50,
+      "height": 50,
+      "icon": "draw_canvas_5",
+      "stage": 0
+    },
+    {
+      "id": 11,
+      "canvas_type": "1:1",
+      "custom_id": 0,
+      "width": 100,
+      "height": 100,
+      "icon": "draw_canvas_5",
+      "stage": 0
+    },
+    {
+      "id": 12,
+      "canvas_type": "1:1",
+      "custom_id": 0,
+      "width": 150,
+      "height": 150,
+      "icon": "draw_canvas_5",
+      "stage": 0
+    },
+    {
+      "id": 13,
+      "canvas_type": "3:4",
+      "custom_id": 0,
+      "width": 24,
+      "height": 30,
+      "icon": "draw_canvas_4",
+      "stage": 1
+    },
+    {
+      "id": 14,
+      "canvas_type": "3:4",
+      "custom_id": 0,
+      "width": 38,
+      "height": 50,
+      "icon": "draw_canvas_4",
+      "stage": 1
+    },
+    {
+      "id": 15,
+      "canvas_type": "3:4",
+      "custom_id": 0,
+      "width": 76,
+      "height": 100,
+      "icon": "draw_canvas_4",
+      "stage": 1
+    },
+    {
+      "id": 16,
+      "canvas_type": "3:4",
+      "custom_id": 0,
+      "width": 114,
+      "height": 150,
+      "icon": "draw_canvas_4",
+      "stage": 1
+    },
+    {
+      "id": 17,
+      "canvas_type": "9:16",
+      "custom_id": 0,
+      "width": 18,
+      "height": 30,
+      "icon": "draw_canvas_2",
+      "stage": 3
+    },
+    {
+      "id": 18,
+      "canvas_type": "9:16",
+      "custom_id": 0,
+      "width": 28,
+      "height": 50,
+      "icon": "draw_canvas_2",
+      "stage": 3
+    },
+    {
+      "id": 19,
+      "canvas_type": "9:16",
+      "custom_id": 0,
+      "width": 56,
+      "height": 100,
+      "icon": "draw_canvas_2",
+      "stage": 3
+    },
+    {
+      "id": 20,
+      "canvas_type": "9:16",
+      "custom_id": 0,
+      "width": 84,
+      "height": 150,
+      "icon": "draw_canvas_2",
+      "stage": 3
+    },
+    {
+      "id": 21,
+      "canvas_type": "1:1",
+      "custom_id": 1,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 22,
+      "canvas_type": "1:1",
+      "custom_id": 2,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 23,
+      "canvas_type": "1:1",
+      "custom_id": 3,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 24,
+      "canvas_type": "1:1",
+      "custom_id": 4,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 25,
+      "canvas_type": "1:1",
+      "custom_id": 5,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 26,
+      "canvas_type": "1:1",
+      "custom_id": 6,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 27,
+      "canvas_type": "1:1",
+      "custom_id": 7,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 28,
+      "canvas_type": "1:1",
+      "custom_id": 8,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 29,
+      "canvas_type": "1:1",
+      "custom_id": 9,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 30,
+      "canvas_type": "1:1",
+      "custom_id": 10,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 31,
+      "canvas_type": "1:1",
+      "custom_id": 11,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 32,
+      "canvas_type": "1:1",
+      "custom_id": 12,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 33,
+      "canvas_type": "1:1",
+      "custom_id": 13,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 34,
+      "canvas_type": "1:1",
+      "custom_id": 14,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 35,
+      "canvas_type": "1:1",
+      "custom_id": 15,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 36,
+      "canvas_type": "1:1",
+      "custom_id": 16,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 37,
+      "canvas_type": "1:1",
+      "custom_id": 17,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 38,
+      "canvas_type": "1:1",
+      "custom_id": 18,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 39,
+      "canvas_type": "1:1",
+      "custom_id": 19,
+      "width": 256,
+      "height": 256,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 40,
+      "canvas_type": "1:1",
+      "custom_id": 20,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 41,
+      "canvas_type": "1:1",
+      "custom_id": 21,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 42,
+      "canvas_type": "1:1",
+      "custom_id": 22,
+      "width": 128,
+      "height": 128,
+      "icon": "",
+      "stage": 0
+    },
+    {
+      "id": 43,
+      "canvas_type": "1:1",
+      "custom_id": 23,
+      "width": 64,
+      "height": 64,
+      "icon": "",
+      "stage": 0
+    }
+  ],
+  "segments": [
+    {
+      "id": 1,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 64,
+      "height": 80,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 2,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 64,
+      "height": 80,
+      "line": 64,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 3,
+      "raw_name": "左袖",
+      "name": "Left Sleeve",
+      "width": 64,
+      "height": 48,
+      "line": 0,
+      "row": 80,
+      "mask": ""
+    },
+    {
+      "id": 4,
+      "raw_name": "右袖",
+      "name": "Right Sleeve",
+      "width": 64,
+      "height": 48,
+      "line": 64,
+      "row": 80,
+      "mask": ""
+    },
+    {
+      "id": 5,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 64,
+      "height": 64,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 6,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 64,
+      "height": 64,
+      "line": 64,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 7,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 128,
+      "height": 64,
+      "line": 0,
+      "row": 64,
+      "mask": ""
+    },
+    {
+      "id": 8,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 128,
+      "height": 64,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 9,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 102,
+      "height": 64,
+      "line": 13,
+      "row": 64,
+      "mask": ""
+    },
+    {
+      "id": 10,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 102,
+      "height": 64,
+      "line": 13,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 11,
+      "raw_name": "前帽檐",
+      "name": "Front Brim",
+      "width": 126,
+      "height": 78,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 12,
+      "raw_name": "后帽檐",
+      "name": "Back Brim",
+      "width": 126,
+      "height": 78,
+      "line": 130,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 13,
+      "raw_name": "帽顶",
+      "name": "Crown",
+      "width": 100,
+      "height": 100,
+      "line": 78,
+      "row": 78,
+      "mask": ""
+    },
+    {
+      "id": 14,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 80,
+      "height": 88,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 15,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 80,
+      "height": 88,
+      "line": 90,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 16,
+      "raw_name": "袖子",
+      "name": "Sleeve",
+      "width": 130,
+      "height": 70,
+      "line": 9,
+      "row": 102,
+      "mask": ""
+    },
+    {
+      "id": 17,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 80,
+      "height": 116,
+      "line": 6,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 18,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 80,
+      "height": 116,
+      "line": 90,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 19,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 102,
+      "height": 154,
+      "line": 1,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 20,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 76,
+      "height": 154,
+      "line": 108,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 21,
+      "raw_name": "内搭",
+      "name": "Innerwear",
+      "width": 168,
+      "height": 102,
+      "line": 0,
+      "row": 154,
+      "mask": ""
+    },
+    {
+      "id": 22,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 54,
+      "height": 60,
+      "line": 5,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 23,
+      "raw_name": "后片与侧片",
+      "name": "Back and Side",
+      "width": 128,
+      "height": 62,
+      "line": 0,
+      "row": 64,
+      "mask": ""
+    },
+    {
+      "id": 24,
+      "raw_name": "帽檐",
+      "name": "Brim",
+      "width": 62,
+      "height": 52,
+      "line": 59,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 25,
+      "raw_name": "鞋身",
+      "name": "Upper",
+      "width": 100,
+      "height": 90,
+      "line": 9,
+      "row": 88,
+      "mask": ""
+    },
+    {
+      "id": 26,
+      "raw_name": "鞋头与鞋带",
+      "name": "Toe and Laces",
+      "width": 120,
+      "height": 60,
+      "line": 8,
+      "row": 8,
+      "mask": ""
+    },
+    {
+      "id": 27,
+      "raw_name": "鞋底",
+      "name": "Sole",
+      "width": 60,
+      "height": 60,
+      "line": 28,
+      "row": 188,
+      "mask": ""
+    },
+    {
+      "id": 28,
+      "raw_name": "鞋身",
+      "name": "Upper",
+      "width": 78,
+      "height": 64,
+      "line": 25,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 29,
+      "raw_name": "鞋底",
+      "name": "Sole",
+      "width": 108,
+      "height": 64,
+      "line": 10,
+      "row": 64,
+      "mask": ""
+    },
+    {
+      "id": 30,
+      "raw_name": "被面",
+      "name": "Quilt",
+      "width": 200,
+      "height": 130,
+      "line": 27,
+      "row": 108,
+      "mask": ""
+    },
+    {
+      "id": 31,
+      "raw_name": "床沿",
+      "name": "Bed Frame",
+      "width": 200,
+      "height": 98,
+      "line": 27,
+      "row": 10,
+      "mask": ""
+    },
+    {
+      "id": 32,
+      "raw_name": "被面",
+      "name": "Quilt",
+      "width": 256,
+      "height": 128,
+      "line": 0,
+      "row": 120,
+      "mask": ""
+    },
+    {
+      "id": 33,
+      "raw_name": "床沿",
+      "name": "Bed Frame",
+      "width": 256,
+      "height": 110,
+      "line": 0,
+      "row": 10,
+      "mask": ""
+    },
+    {
+      "id": 34,
+      "raw_name": "柜门",
+      "name": "Cabinet Doors",
+      "width": 128,
+      "height": 128,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 35,
+      "raw_name": "柜面",
+      "name": "Cabinet Front",
+      "width": 128,
+      "height": 128,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 36,
+      "raw_name": "灯罩前片",
+      "name": "Lampshade Front",
+      "width": 80,
+      "height": 46,
+      "line": 24,
+      "row": 77,
+      "mask": ""
+    },
+    {
+      "id": 37,
+      "raw_name": "灯罩后片",
+      "name": "Lampshade Back",
+      "width": 80,
+      "height": 46,
+      "line": 24,
+      "row": 31,
+      "mask": ""
+    },
+    {
+      "id": 38,
+      "raw_name": "底座边缘",
+      "name": "Base Edge",
+      "width": 128,
+      "height": 28,
+      "line": 0,
+      "row": 2,
+      "mask": ""
+    },
+    {
+      "id": 39,
+      "raw_name": "椅背前片",
+      "name": "Chair Back Front",
+      "width": 54,
+      "height": 28,
+      "line": 36,
+      "row": 32,
+      "mask": ""
+    },
+    {
+      "id": 40,
+      "raw_name": "椅背后片",
+      "name": "Chair Back Back",
+      "width": 54,
+      "height": 28,
+      "line": 36,
+      "row": 4,
+      "mask": ""
+    },
+    {
+      "id": 41,
+      "raw_name": "座椅表面",
+      "name": "Seat Surface",
+      "width": 54,
+      "height": 54,
+      "line": 35,
+      "row": 66,
+      "mask": ""
+    },
+    {
+      "id": 42,
+      "raw_name": "茶几台面",
+      "name": "Table Top",
+      "width": 128,
+      "height": 128,
+      "line": 0,
+      "row": 0,
+      "mask": ""
+    },
+    {
+      "id": 43,
+      "raw_name": "沙发靠背",
+      "name": "Sofa Back",
+      "width": 200,
+      "height": 110,
+      "line": 29,
+      "row": 132,
+      "mask": ""
+    },
+    {
+      "id": 44,
+      "raw_name": "沙发座面",
+      "name": "Sofa Seat",
+      "width": 200,
+      "height": 110,
+      "line": 29,
+      "row": 14,
+      "mask": ""
+    },
+    {
+      "id": 45,
+      "raw_name": "沙发靠背",
+      "name": "Sofa Back",
+      "width": 60,
+      "height": 60,
+      "line": 2,
+      "row": 38,
+      "mask": ""
+    },
+    {
+      "id": 46,
+      "raw_name": "沙发座面",
+      "name": "Sofa Seat",
+      "width": 60,
+      "height": 70,
+      "line": 64,
+      "row": 29,
+      "mask": ""
+    },
+    {
+      "id": 47,
+      "raw_name": "灯罩前片",
+      "name": "Lampshade Front",
+      "width": 80,
+      "height": 52,
+      "line": 24,
+      "row": 71,
+      "mask": ""
+    },
+    {
+      "id": 48,
+      "raw_name": "灯罩后片",
+      "name": "Lampshade Back",
+      "width": 80,
+      "height": 52,
+      "line": 24,
+      "row": 19,
+      "mask": ""
+    },
+    {
+      "id": 49,
+      "raw_name": "底座边缘",
+      "name": "Base Edge",
+      "width": 128,
+      "height": 16,
+      "line": 0,
+      "row": 2,
+      "mask": ""
+    },
+    {
+      "id": 50,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 64,
+      "height": 72,
+      "line": 0,
+      "row": 25,
+      "mask": ""
+    },
+    {
+      "id": 51,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 64,
+      "height": 72,
+      "line": 64,
+      "row": 25,
+      "mask": ""
+    },
+    {
+      "id": 52,
+      "raw_name": "前片",
+      "name": "Front",
+      "width": 30,
+      "height": 40,
+      "line": 2,
+      "row": 9,
+      "mask": ""
+    },
+    {
+      "id": 53,
+      "raw_name": "后片",
+      "name": "Back",
+      "width": 30,
+      "height": 40,
+      "line": 32,
+      "row": 9,
+      "mask": ""
+    }
+  ],
+  "presets": [
+    {
+      "id": 1,
+      "raw_name": "短袖T恤",
+      "raw_describe": "短袖T恤",
+      "name": "T-Shirt",
+      "icon": "draw_clothes_1",
+      "mask": "draw_top01_maskborder",
+      "static_id": 13107001,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 1,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 64,
+          "height": 80,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 2,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 64,
+          "height": 80,
+          "line": 64,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 3,
+          "raw_name": "左袖",
+          "name": "Left Sleeve",
+          "width": 64,
+          "height": 48,
+          "line": 0,
+          "row": 80,
+          "mask": ""
+        },
+        {
+          "id": 4,
+          "raw_name": "右袖",
+          "name": "Right Sleeve",
+          "width": 64,
+          "height": 48,
+          "line": 64,
+          "row": 80,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "raw_name": "背心",
+      "raw_describe": "背心",
+      "name": "Tank Top",
+      "icon": "draw_clothes_2",
+      "mask": "draw_top02_maskborder",
+      "static_id": 13107002,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 5,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 64,
+          "height": 64,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 6,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 64,
+          "height": 64,
+          "line": 64,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "raw_name": "短裙",
+      "raw_describe": "短裙",
+      "name": "Mini Skirt",
+      "icon": "draw_clothes_3",
+      "mask": "draw_bottom01_maskborder",
+      "static_id": 14091001,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 7,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 128,
+          "height": 64,
+          "line": 0,
+          "row": 64,
+          "mask": ""
+        },
+        {
+          "id": 8,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 128,
+          "height": 64,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "raw_name": "短裤",
+      "raw_describe": "短裤",
+      "name": "Shorts",
+      "icon": "draw_clothes_11",
+      "mask": "draw_bottom02_maskborder",
+      "static_id": 14091002,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 9,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 102,
+          "height": 64,
+          "line": 13,
+          "row": 64,
+          "mask": ""
+        },
+        {
+          "id": 10,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 102,
+          "height": 64,
+          "line": 13,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "raw_name": "渔夫帽",
+      "raw_describe": "渔夫帽",
+      "name": "Bucket Hat",
+      "icon": "draw_clothes_4",
+      "mask": "draw_cap01_maskborder",
+      "static_id": 11184001,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 11,
+          "raw_name": "前帽檐",
+          "name": "Front Brim",
+          "width": 126,
+          "height": 78,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 12,
+          "raw_name": "后帽檐",
+          "name": "Back Brim",
+          "width": 126,
+          "height": 78,
+          "line": 130,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 13,
+          "raw_name": "帽顶",
+          "name": "Crown",
+          "width": 100,
+          "height": 100,
+          "line": 78,
+          "row": 78,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "raw_name": "卫衣",
+      "raw_describe": "卫衣",
+      "name": "Hoodie",
+      "icon": "draw_clothes_7",
+      "mask": "draw_top03_maskborder",
+      "static_id": 13107003,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 14,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 80,
+          "height": 88,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 15,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 80,
+          "height": 88,
+          "line": 90,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 16,
+          "raw_name": "袖子",
+          "name": "Sleeve",
+          "width": 130,
+          "height": 70,
+          "line": 9,
+          "row": 102,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "raw_name": "长裤",
+      "raw_describe": "长裤",
+      "name": "Pants",
+      "icon": "draw_clothes_6",
+      "mask": "draw_bottom03_maskborder",
+      "static_id": 14091003,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 17,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 80,
+          "height": 116,
+          "line": 6,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 18,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 80,
+          "height": 116,
+          "line": 90,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "raw_name": "连衣裙",
+      "raw_describe": "连衣裙",
+      "name": "Dress",
+      "icon": "draw_clothes_8",
+      "mask": "draw_fullbody01_maskborder",
+      "static_id": 18080001,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 19,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 102,
+          "height": 154,
+          "line": 1,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 20,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 76,
+          "height": 154,
+          "line": 108,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 21,
+          "raw_name": "内搭",
+          "name": "Innerwear",
+          "width": 168,
+          "height": 102,
+          "line": 0,
+          "row": 154,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "raw_name": "棒球帽",
+      "raw_describe": "棒球帽",
+      "name": "Baseball Cap",
+      "icon": "draw_clothes_9",
+      "mask": "draw_cap02_maskborder",
+      "static_id": 11184002,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 22,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 54,
+          "height": 60,
+          "line": 5,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 23,
+          "raw_name": "后片与侧片",
+          "name": "Back and Side",
+          "width": 128,
+          "height": 62,
+          "line": 0,
+          "row": 64,
+          "mask": ""
+        },
+        {
+          "id": 24,
+          "raw_name": "帽檐",
+          "name": "Brim",
+          "width": 62,
+          "height": 52,
+          "line": 59,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "raw_name": "帆布鞋",
+      "raw_describe": "帆布鞋",
+      "name": "Canvas Shoes",
+      "icon": "draw_clothes_10",
+      "mask": "draw_shoes02_maskborder",
+      "static_id": 16128002,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 25,
+          "raw_name": "鞋身",
+          "name": "Upper",
+          "width": 100,
+          "height": 90,
+          "line": 9,
+          "row": 88,
+          "mask": ""
+        },
+        {
+          "id": 26,
+          "raw_name": "鞋头与鞋带",
+          "name": "Toe and Laces",
+          "width": 120,
+          "height": 60,
+          "line": 8,
+          "row": 8,
+          "mask": ""
+        },
+        {
+          "id": 27,
+          "raw_name": "鞋底",
+          "name": "Sole",
+          "width": 60,
+          "height": 60,
+          "line": 28,
+          "row": 188,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "raw_name": "玛丽珍鞋",
+      "raw_describe": "玛丽珍鞋",
+      "name": "Mary Jane Shoes",
+      "icon": "draw_clothes_5",
+      "mask": "draw_shoes01_maskborder",
+      "static_id": 16128001,
+      "meshfile": "310",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 3,
+      "parts": [
+        {
+          "id": 28,
+          "raw_name": "鞋身",
+          "name": "Upper",
+          "width": 78,
+          "height": 64,
+          "line": 25,
+          "row": 0,
+          "mask": ""
+        },
+        {
+          "id": 29,
+          "raw_name": "鞋底",
+          "name": "Sole",
+          "width": 108,
+          "height": 64,
+          "line": 10,
+          "row": 64,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "raw_name": "拼木单人床",
+      "raw_describe": "拼木单人床",
+      "name": "Wooden Single Bed",
+      "icon": "draw_furniture_1",
+      "mask": "p_bed_normal_twin_bed_1_maskborder",
+      "static_id": 310001,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 30,
+          "raw_name": "被面",
+          "name": "Quilt",
+          "width": 200,
+          "height": 130,
+          "line": 27,
+          "row": 108,
+          "mask": ""
+        },
+        {
+          "id": 31,
+          "raw_name": "床沿",
+          "name": "Bed Frame",
+          "width": 200,
+          "height": 98,
+          "line": 27,
+          "row": 10,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "raw_name": "拼木双人床",
+      "raw_describe": "拼木双人床",
+      "name": "Wooden Double Bed",
+      "icon": "draw_furniture_2",
+      "mask": "p_bed_normal_bed_doublebed_1_maskborder",
+      "static_id": 310030,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 32,
+          "raw_name": "被面",
+          "name": "Quilt",
+          "width": 256,
+          "height": 128,
+          "line": 0,
+          "row": 120,
+          "mask": ""
+        },
+        {
+          "id": 33,
+          "raw_name": "床沿",
+          "name": "Bed Frame",
+          "width": 256,
+          "height": 110,
+          "line": 0,
+          "row": 10,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "raw_name": "拼木衣柜",
+      "raw_describe": "拼木衣柜",
+      "name": "Wooden Wardrobe",
+      "icon": "draw_furniture_4",
+      "mask": "p_wardrobe_normal_double_door_closet_1_maskborder",
+      "static_id": 360001,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 34,
+          "raw_name": "柜门",
+          "name": "Cabinet Doors",
+          "width": 128,
+          "height": 128,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "raw_name": "拼木床头柜",
+      "raw_describe": "拼木床头柜",
+      "name": "Wooden Nightstand",
+      "icon": "draw_furniture_3",
+      "mask": "p_wardrobe_normal_night_table_1_maskborder",
+      "static_id": 360002,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 35,
+          "raw_name": "柜面",
+          "name": "Cabinet Front",
+          "width": 128,
+          "height": 128,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "raw_name": "拼木台灯",
+      "raw_describe": "拼木台灯",
+      "name": "Wooden Table Lamp",
+      "icon": "draw_furniture_5",
+      "mask": "p_lighting_normal_lamp_1_maskborder",
+      "static_id": 350002,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 36,
+          "raw_name": "灯罩前片",
+          "name": "Lampshade Front",
+          "width": 80,
+          "height": 46,
+          "line": 24,
+          "row": 77,
+          "mask": ""
+        },
+        {
+          "id": 37,
+          "raw_name": "灯罩后片",
+          "name": "Lampshade Back",
+          "width": 80,
+          "height": 46,
+          "line": 24,
+          "row": 31,
+          "mask": ""
+        },
+        {
+          "id": 38,
+          "raw_name": "底座边缘",
+          "name": "Base Edge",
+          "width": 128,
+          "height": 28,
+          "line": 0,
+          "row": 2,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "raw_name": "拼木椅子",
+      "raw_describe": "拼木椅子",
+      "name": "Wooden Chair",
+      "icon": "draw_furniture_6",
+      "mask": "p_chair_normal_chair_1_maskborder",
+      "static_id": 320037,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 39,
+          "raw_name": "椅背前片",
+          "name": "Chair Back Front",
+          "width": 54,
+          "height": 28,
+          "line": 36,
+          "row": 32,
+          "mask": ""
+        },
+        {
+          "id": 40,
+          "raw_name": "椅背后片",
+          "name": "Chair Back Back",
+          "width": 54,
+          "height": 28,
+          "line": 36,
+          "row": 4,
+          "mask": ""
+        },
+        {
+          "id": 41,
+          "raw_name": "座椅表面",
+          "name": "Seat Surface",
+          "width": 54,
+          "height": 54,
+          "line": 35,
+          "row": 66,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "raw_name": "拼木茶几",
+      "raw_describe": "拼木茶几",
+      "name": "Wooden Tea Table",
+      "icon": "draw_furniture_7",
+      "mask": "p_table_normal_tea_table_1_maskborder",
+      "static_id": 340003,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 42,
+          "raw_name": "茶几台面",
+          "name": "Table Top",
+          "width": 128,
+          "height": 128,
+          "line": 0,
+          "row": 0,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "raw_name": "拼木双人沙发",
+      "raw_describe": "拼木双人沙发",
+      "name": "Wooden Loveseat",
+      "icon": "draw_furniture_8",
+      "mask": "p_chair_normal_love_seat_1_maskborder",
+      "static_id": 320005,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 43,
+          "raw_name": "沙发靠背",
+          "name": "Sofa Back",
+          "width": 200,
+          "height": 110,
+          "line": 29,
+          "row": 132,
+          "mask": ""
+        },
+        {
+          "id": 44,
+          "raw_name": "沙发座面",
+          "name": "Sofa Seat",
+          "width": 200,
+          "height": 110,
+          "line": 29,
+          "row": 14,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "raw_name": "拼木单人沙发",
+      "raw_describe": "拼木单人沙发",
+      "name": "Wooden Armchair",
+      "icon": "draw_furniture_9",
+      "mask": "p_chair_normal_chair_2_maskborder",
+      "static_id": 320070,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 45,
+          "raw_name": "沙发靠背",
+          "name": "Sofa Back",
+          "width": 60,
+          "height": 60,
+          "line": 2,
+          "row": 38,
+          "mask": ""
+        },
+        {
+          "id": 46,
+          "raw_name": "沙发座面",
+          "name": "Sofa Seat",
+          "width": 60,
+          "height": 70,
+          "line": 64,
+          "row": 29,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "raw_name": "拼木落地灯",
+      "raw_describe": "拼木落地灯",
+      "name": "Wooden Floor Lamp",
+      "icon": "draw_furniture_10",
+      "mask": "p_lighting_normal_lamp_2_maskborder",
+      "static_id": 350041,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 0,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 47,
+          "raw_name": "灯罩前片",
+          "name": "Lampshade Front",
+          "width": 80,
+          "height": 52,
+          "line": 24,
+          "row": 71,
+          "mask": ""
+        },
+        {
+          "id": 48,
+          "raw_name": "灯罩后片",
+          "name": "Lampshade Back",
+          "width": 80,
+          "height": 52,
+          "line": 24,
+          "row": 19,
+          "mask": ""
+        },
+        {
+          "id": 49,
+          "raw_name": "底座边缘",
+          "name": "Base Edge",
+          "width": 128,
+          "height": 16,
+          "line": 0,
+          "row": 2,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "raw_name": "圣诞袜",
+      "raw_describe": "圣诞袜",
+      "name": "Christmas Stocking",
+      "icon": "draw_furniture_11",
+      "mask": "p_decoration_christmas_decoration_6_maskborder",
+      "static_id": 301964,
+      "meshfile": "",
+      "visible": false,
+      "appear_date_id": 50198,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 50,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 64,
+          "height": 72,
+          "line": 0,
+          "row": 25,
+          "mask": ""
+        },
+        {
+          "id": 51,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 64,
+          "height": 72,
+          "line": 64,
+          "row": 25,
+          "mask": ""
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "raw_name": "手绘彩蛋",
+      "raw_describe": "手绘彩蛋",
+      "name": "Painted Egg",
+      "icon": "draw_furniture_12",
+      "mask": "p_decoration_easter_decoration_15_maskborder",
+      "static_id": 302232,
+      "meshfile": "",
+      "visible": true,
+      "appear_date_id": 50213,
+      "apply_type": 4,
+      "parts": [
+        {
+          "id": 52,
+          "raw_name": "前片",
+          "name": "Front",
+          "width": 30,
+          "height": 40,
+          "line": 2,
+          "row": 9,
+          "mask": ""
+        },
+        {
+          "id": 53,
+          "raw_name": "后片",
+          "name": "Back",
+          "width": 30,
+          "height": 40,
+          "line": 32,
+          "row": 9,
+          "mask": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+/.venv/
+__pycache__/
+*.py[cod]
+*.af~lock~
+*.af~lock~
+config.json
+*.af~lock~
+/videos
+/src/heartopia_painter/__pycache__
