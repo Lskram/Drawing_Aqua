@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -75,7 +76,7 @@ class AppConfig:
     tank_top_part: str = "Front"
 
     # For Dress preset
-    dress_part: str = "Front Part"
+    dress_part: str = "Front"
     dress_mapping_scale_by_part: Dict[str, float] = field(default_factory=dict)
     dress_mapping_offset_x_by_part: Dict[str, float] = field(default_factory=dict)
     dress_mapping_offset_y_by_part: Dict[str, float] = field(default_factory=dict)
@@ -95,6 +96,7 @@ class AppConfig:
     image_palette_map_enabled: bool = False
     image_dither_enabled: bool = False
     image_background_rgb: RGB = (255, 255, 255)
+    artpia_exact_mask_enabled: bool = False
 
     # Painting timing (seconds). These defaults are conservative to improve click reliability.
     move_duration_s: float = 0.03
@@ -243,8 +245,10 @@ class AppConfig:
         cfg.tshirt_part = str(data.get("tshirt_part", cfg.tshirt_part))
         cfg.tank_top_part = str(data.get("tank_top_part", cfg.tank_top_part))
         cfg.dress_part = str(data.get("dress_part", cfg.dress_part))
-        if not cfg.dress_part or cfg.dress_part == "Full Body":
-            cfg.dress_part = "Front Part"
+        if not cfg.dress_part or cfg.dress_part in {"Full Body", "Front Part"}:
+            cfg.dress_part = "Front"
+        elif cfg.dress_part == "Back Part":
+            cfg.dress_part = "Back"
         cfg.dress_mapping_scale_by_part = to_float_map(data.get("dress_mapping_scale_by_part"))
         cfg.dress_mapping_offset_x_by_part = to_float_map(data.get("dress_mapping_offset_x_by_part"))
         cfg.dress_mapping_offset_y_by_part = to_float_map(data.get("dress_mapping_offset_y_by_part"))
@@ -280,6 +284,9 @@ class AppConfig:
             cfg.image_background_rgb = to_rgb(data.get("image_background_rgb", cfg.image_background_rgb))
         except Exception:
             cfg.image_background_rgb = (255, 255, 255)
+        cfg.artpia_exact_mask_enabled = bool(
+            data.get("artpia_exact_mask_enabled", cfg.artpia_exact_mask_enabled)
+        )
 
         # Migrate older per-key naming schemes to the new keys.
         # Old: "1:1 (30x30)" -> New: "1:1::Small"
@@ -395,7 +402,10 @@ class AppConfig:
 
 
 def default_config_path() -> Path:
-    # Keep config next to the repo for now
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent / "config.json"
+
+    # Keep config next to the repo for now.
     return Path.cwd() / "config.json"
 
 

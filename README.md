@@ -175,7 +175,7 @@ The app writes settings to `config.json` in the repo folder, including:
 - Your last selected preset
 - Your last imported image path and selected canvas area
 - Timing settings
-- For **T-Shirt**, **Tank Top**, and **Dress**, each part stores its own last image + canvas rectangle
+- Each preset/precision/part stores its own last image + canvas rectangle, so multi-part items can be selected once and reused later
 
 Resetting:
 

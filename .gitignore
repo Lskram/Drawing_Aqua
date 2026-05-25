@@ -7,3 +7,7 @@ config.json
 *.af~lock~
 /videos
 /src/heartopia_painter/__pycache__
+/artpia_masks/
+/build/
+/dist/
+*.spec

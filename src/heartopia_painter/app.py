@@ -10,6 +10,12 @@ from typing import Optional, Tuple
 from PySide6 import QtCore, QtGui, QtWidgets
 from PIL import Image
 
+from .artpia_templates import (
+    find_artpia_part_template,
+    save_artpia_mask_file,
+    save_artpia_template_files,
+)
+from .app_icon import load_app_icon
 from .screen import get_screen_pixel_rgb
 from .config import AppConfig, ClothingPartSpec, MainColor, ShadeButton, default_config_path, load_config, save_config
 from .game_draw_data import (
@@ -99,6 +105,14 @@ DRESS_MAPPINGS: dict[str, Tuple[Tuple[float, float, float, float], str]] = {
     for part in DRESS_PARTS
 }
 
+LEGACY_GAME_DRAW_PART_ALIASES: dict[str, dict[str, str]] = {
+    DRESS_PRESET_NAME: {
+        "Front Part": "Front",
+        "Back Part": "Back",
+        "Full Body": "Front",
+    }
+}
+
 
 def _first_key(data: dict[str, Tuple[int, int]], fallback: str) -> str:
     return next(iter(data), fallback)
@@ -109,12 +123,20 @@ def default_game_draw_part(preset: str) -> str:
     return _first_key(parts, "Part 1")
 
 
+def canonical_game_draw_part(preset: str, part: Optional[str]) -> str:
+    parts = GAME_DRAW_PARTS_BY_PRESET.get(preset, {})
+    fallback = default_game_draw_part(preset)
+    name = str(part or "").strip()
+    name = LEGACY_GAME_DRAW_PART_ALIASES.get(preset, {}).get(name, name)
+    return name if name in parts else fallback
+
+
 def selection_key(preset: str, variant: Optional[str]) -> str:
     if preset in ASPECT_PRESET_NAMES:
         precision = variant or "Small"
         return f"{preset}::{precision}"
     if is_game_draw_preset(preset):
-        return f"{preset}::{variant or default_game_draw_part(preset)}"
+        return f"{preset}::{canonical_game_draw_part(preset, variant)}"
     if preset == CUSTOM_CLOTHING_PRESET_NAME:
         return f"{preset}::{variant or 'Part 1'}"
     return preset
@@ -147,11 +169,15 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Heartopia Image Painter")
+        icon = load_app_icon()
+        if not icon.isNull():
+            self.setWindowIcon(icon)
 
         self.statusBar().showMessage("Ready")
 
         self._config_path = default_config_path()
         self._cfg = load_config(self._config_path)
+        self._migrate_selection_state_keys()
 
         self._loaded: Optional[LoadedImage] = None
         self._canvas_rect: Optional[Tuple[int, int, int, int]] = None
@@ -181,6 +207,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self._build_ui()
         self._apply_persisted_state()
         self._refresh_config_view()
+
+    def _migrate_selection_state_keys(self) -> None:
+        changed = False
+        for preset, aliases in LEGACY_GAME_DRAW_PART_ALIASES.items():
+            for old_part, new_part in aliases.items():
+                old_key = f"{preset}::{old_part}"
+                new_key = selection_key(preset, new_part)
+                if old_key in self._cfg.last_canvas_rect_by_key and new_key not in self._cfg.last_canvas_rect_by_key:
+                    self._cfg.last_canvas_rect_by_key[new_key] = self._cfg.last_canvas_rect_by_key[old_key]
+                    changed = True
+                if old_key in self._cfg.last_image_path_by_key and new_key not in self._cfg.last_image_path_by_key:
+                    self._cfg.last_image_path_by_key[new_key] = self._cfg.last_image_path_by_key[old_key]
+                    changed = True
+                if self._cfg.game_draw_part_by_preset.get(preset) == old_part:
+                    self._cfg.game_draw_part_by_preset[preset] = canonical_game_draw_part(preset, old_part)
+                    changed = True
+        if changed:
+            self._save_cfg()
 
     def _ensure_status_overlay(self) -> StatusOverlay:
         if self._status_overlay is None:
@@ -623,6 +667,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.chk_dither = QtWidgets.QCheckBox("Dither palette-mapped image")
         self.btn_bg_color = QtWidgets.QPushButton("Background: #FFFFFF")
         self.btn_reapply_prep = QtWidgets.QPushButton("Re-apply to loaded image")
+        self.artpia_template_widget = QtWidgets.QWidget()
+        artpia_template_layout = QtWidgets.QHBoxLayout(self.artpia_template_widget)
+        artpia_template_layout.setContentsMargins(0, 0, 0, 0)
+        self.chk_artpia_exact_mask = QtWidgets.QCheckBox("Clip imported image to Art-pia exact mask")
+        self.btn_export_artpia_guide = QtWidgets.QPushButton("Export Art-pia GPT guide...")
+        artpia_template_layout.addWidget(self.chk_artpia_exact_mask)
+        artpia_template_layout.addWidget(self.btn_export_artpia_guide)
+        artpia_template_layout.addStretch(1)
         self.lbl_prep_hint = QtWidgets.QLabel(
             "Smart keeps the full artwork, trims empty borders, then fits it into the selected grid."
         )
@@ -662,8 +714,9 @@ class MainWindow(QtWidgets.QMainWindow):
         prep_layout.addWidget(self.chk_dither, 1, 2)
         prep_layout.addWidget(self.btn_bg_color, 2, 0)
         prep_layout.addWidget(self.btn_reapply_prep, 2, 1)
-        prep_layout.addWidget(self.dress_mapping_widget, 3, 0, 1, 3)
-        prep_layout.addWidget(self.lbl_prep_hint, 4, 0, 1, 3)
+        prep_layout.addWidget(self.artpia_template_widget, 3, 0, 1, 3)
+        prep_layout.addWidget(self.dress_mapping_widget, 4, 0, 1, 3)
+        prep_layout.addWidget(self.lbl_prep_hint, 5, 0, 1, 3)
         tab_main_layout.addWidget(prep_group)
 
         # Config
@@ -881,8 +934,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.chk_auto_crop.stateChanged.connect(lambda _v: self._on_image_prep_changed())
         self.chk_palette_map.stateChanged.connect(lambda _v: self._on_image_prep_changed())
         self.chk_dither.stateChanged.connect(lambda _v: self._on_image_prep_changed())
+        self.chk_artpia_exact_mask.stateChanged.connect(lambda _v: self._on_image_prep_changed())
         self.btn_bg_color.clicked.connect(self._on_background_color)
         self.btn_reapply_prep.clicked.connect(self._on_reapply_image_prep)
+        self.btn_export_artpia_guide.clicked.connect(self._on_export_artpia_guide)
         self.spin_dress_scale.valueChanged.connect(lambda _v: self._on_dress_mapping_changed())
         self.spin_dress_offset_x.valueChanged.connect(lambda _v: self._on_dress_mapping_changed())
         self.spin_dress_offset_y.valueChanged.connect(lambda _v: self._on_dress_mapping_changed())
@@ -971,7 +1026,7 @@ class MainWindow(QtWidgets.QMainWindow):
         preset = self.cbo_preset.currentText()
         if not is_game_draw_preset(preset):
             return
-        part = self.cbo_part.currentText() or default_game_draw_part(preset)
+        part = canonical_game_draw_part(preset, self.cbo_part.currentText())
         if not isinstance(getattr(self._cfg, "game_draw_part_by_preset", None), dict):
             self._cfg.game_draw_part_by_preset = {}
         self._cfg.game_draw_part_by_preset[preset] = part
@@ -1047,13 +1102,12 @@ class MainWindow(QtWidgets.QMainWindow):
     def _current_dress_part(self) -> str:
         fallback = default_game_draw_part(DRESS_PRESET_NAME)
         part = self.cbo_part.currentText() or getattr(self._cfg, "dress_part", fallback) or fallback
-        return part if part in DRESS_PARTS else fallback
+        return canonical_game_draw_part(DRESS_PRESET_NAME, part)
 
     def _current_game_draw_part(self, preset: str) -> str:
-        parts = GAME_DRAW_PARTS_BY_PRESET.get(preset, {})
         fallback = default_game_draw_part(preset)
         part = self.cbo_part.currentText() or (getattr(self._cfg, "game_draw_part_by_preset", {}) or {}).get(preset, "") or fallback
-        return part if part in parts else fallback
+        return canonical_game_draw_part(preset, part)
 
     def _dress_mapping_values(self, part: str) -> tuple[float, float, float]:
         scale_map = getattr(self._cfg, "dress_mapping_scale_by_part", {}) or {}
@@ -1110,9 +1164,26 @@ class MainWindow(QtWidgets.QMainWindow):
         prep.paint_mask_shape = shape
         return prep
 
+    def _artpia_mask_cache_path_for(self, preset: str, part: str) -> str | None:
+        template = find_artpia_part_template(preset, part)
+        if template is None:
+            return None
+        cache_dir = self._config_path.parent / "artpia_masks"
+        stem = self._safe_template_stem(f"{preset}_{part}_{template.width}x{template.height}")
+        path = cache_dir / f"{stem}__artpia_mask.png"
+        try:
+            if not path.exists():
+                save_artpia_mask_file(template, path)
+        except Exception:
+            return None
+        return str(path)
+
     def _game_draw_prep_options_for_part(self, preset: str, part: str) -> ImagePrepOptions:
         if preset == DRESS_PRESET_NAME:
-            return self._dress_prep_options_for_part(part)
+            prep = self._dress_prep_options_for_part(part)
+            if bool(getattr(self._cfg, "artpia_exact_mask_enabled", False)):
+                prep.mask_image_path = self._artpia_mask_cache_path_for(preset, part)
+            return prep
 
         prep = self._current_prep_options()
         if str(prep.fit_mode).strip().lower() == "smart":
@@ -1122,6 +1193,8 @@ class MainWindow(QtWidgets.QMainWindow):
             prep.fit_mode = "Cover"
         prep.content_rect = (0.0, 0.0, 1.0, 1.0)
         prep.paint_mask_shape = "none"
+        if bool(getattr(self._cfg, "artpia_exact_mask_enabled", False)):
+            prep.mask_image_path = self._artpia_mask_cache_path_for(preset, part)
         return prep
 
     def _exact_dress_template_prep_options(self, part: str) -> ImagePrepOptions:
@@ -1189,7 +1262,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.btn_bg_color.setText(f"Background: #{r:02X}{g:02X}{b:02X}")
 
     def _sync_image_prep_ui_from_cfg(self) -> None:
-        widgets = [self.cbo_fit_mode, self.chk_auto_crop, self.chk_palette_map, self.chk_dither]
+        widgets = [
+            self.cbo_fit_mode,
+            self.chk_auto_crop,
+            self.chk_palette_map,
+            self.chk_dither,
+            self.chk_artpia_exact_mask,
+        ]
         for w in widgets:
             w.blockSignals(True)
         try:
@@ -1200,6 +1279,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.chk_auto_crop.setChecked(bool(getattr(self._cfg, "image_auto_crop", True)))
             self.chk_palette_map.setChecked(bool(getattr(self._cfg, "image_palette_map_enabled", False)))
             self.chk_dither.setChecked(bool(getattr(self._cfg, "image_dither_enabled", False)))
+            self.chk_artpia_exact_mask.setChecked(bool(getattr(self._cfg, "artpia_exact_mask_enabled", False)))
             self._update_bg_button()
         finally:
             for w in widgets:
@@ -1225,12 +1305,20 @@ class MainWindow(QtWidgets.QMainWindow):
     def _update_dress_mapping_ui_visibility(self) -> None:
         if not hasattr(self, "dress_mapping_widget"):
             return
-        is_dress = self.cbo_preset.currentText() == DRESS_PRESET_NAME
+        preset = self.cbo_preset.currentText()
+        is_dress = preset == DRESS_PRESET_NAME
+        is_game = is_game_draw_preset(preset)
         self.dress_mapping_widget.setVisible(is_dress)
+        self.artpia_template_widget.setVisible(is_game)
         if is_dress:
             self.lbl_prep_hint.setText(
                 "Dress + Smart fills the selected clothing part. Use Scale/Offset to align the artwork; "
-                "switch Fit to Contain only if you want the whole source image with padding."
+                "Export Art-pia GPT guide when you need the exact outline and size for generation."
+            )
+        elif is_game:
+            self.lbl_prep_hint.setText(
+                "Export Art-pia GPT guide for an exact outline. Enable exact mask to clip generated images "
+                "back to the real drawable shape before painting."
             )
         else:
             self.lbl_prep_hint.setText(
@@ -1256,6 +1344,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self._cfg.image_auto_crop = bool(self.chk_auto_crop.isChecked())
         self._cfg.image_palette_map_enabled = bool(self.chk_palette_map.isChecked())
         self._cfg.image_dither_enabled = bool(self.chk_dither.isChecked())
+        self._cfg.artpia_exact_mask_enabled = bool(self.chk_artpia_exact_mask.isChecked())
         self._save_cfg()
         self._reload_loaded_image()
 
@@ -1294,6 +1383,50 @@ class MainWindow(QtWidgets.QMainWindow):
         img.putdata([(int(r), int(g), int(b)) for r, g, b in grid.pixels])
         path.parent.mkdir(parents=True, exist_ok=True)
         img.save(path)
+
+    def _on_export_artpia_guide(self) -> None:
+        preset = self.cbo_preset.currentText()
+        if not is_game_draw_preset(preset):
+            QtWidgets.QMessageBox.information(
+                self,
+                "Art-pia guide",
+                "Choose a game clothing/furniture preset first.",
+            )
+            return
+        part = self._current_game_draw_part(preset)
+        template = find_artpia_part_template(preset, part)
+        if template is None:
+            QtWidgets.QMessageBox.warning(
+                self,
+                "Art-pia guide",
+                f"No Art-pia template data for {preset} / {part}.",
+            )
+            return
+
+        default_dir = Path(self._loaded.path).parent if self._loaded is not None else Path.home() / "Downloads"
+        out_dir = QtWidgets.QFileDialog.getExistingDirectory(
+            self,
+            "Export Art-pia GPT guide",
+            str(default_dir),
+        )
+        if not out_dir:
+            return
+
+        try:
+            paths = save_artpia_template_files(preset, part, Path(out_dir), scale=10)
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Art-pia guide export failed", str(e))
+            return
+
+        QtWidgets.QMessageBox.information(
+            self,
+            "Art-pia guide exported",
+            "Created exact Art-pia template files:\n\n"
+            f"GPT guide: {paths['guide']}\n"
+            f"Mask: {paths['mask']}\n\n"
+            "Send the GPT guide image to GPT. When you import the generated image back here, "
+            "enable Art-pia exact mask to clip it to the same drawable shape.",
+        )
 
     def _on_export_dress_templates(self) -> None:
         if self._loaded is None:
@@ -1635,7 +1768,7 @@ class MainWindow(QtWidgets.QMainWindow):
             precision = self.cbo_precision.currentText() or getattr(self._cfg, "three_four_precision", "Small") or "Small"
             return THREE_FOUR_PRECISIONS.get(precision, THREE_FOUR_PRECISIONS["Small"])
         if is_game_draw_preset(preset):
-            part = self.cbo_part.currentText() or default_game_draw_part(preset)
+            part = self._current_game_draw_part(preset)
             size = game_draw_part_size(preset, part)
             if size is not None:
                 return size
@@ -1662,12 +1795,35 @@ class MainWindow(QtWidgets.QMainWindow):
             precision = self.cbo_precision.currentText() or getattr(self._cfg, "three_four_precision", "Small") or "Small"
             return selection_key(preset, precision)
         if is_game_draw_preset(preset):
-            part = self.cbo_part.currentText() or default_game_draw_part(preset)
+            part = self._current_game_draw_part(preset)
             return selection_key(preset, part)
         if preset == CUSTOM_CLOTHING_PRESET_NAME:
             part = self.cbo_part.currentText() or self._cfg.custom_clothing_part or "Part 1"
             return selection_key(preset, part)
         return selection_key(preset, None)
+
+    def _current_selection_key_aliases(self) -> list[str]:
+        preset = self.cbo_preset.currentText()
+        primary = self._current_selection_key()
+        keys = [primary]
+        if is_game_draw_preset(preset):
+            part = self._current_game_draw_part(preset)
+            for old_part, new_part in LEGACY_GAME_DRAW_PART_ALIASES.get(preset, {}).items():
+                if new_part == part:
+                    keys.append(f"{preset}::{old_part}")
+        return list(dict.fromkeys(keys))
+
+    def _lookup_selection_map_value(self, data: dict):
+        keys = self._current_selection_key_aliases()
+        primary = keys[0]
+        for key in keys:
+            value = data.get(key)
+            if value is None:
+                continue
+            if key != primary and primary not in data:
+                data[primary] = value
+            return value
+        return None
 
     def _update_variant_ui_visibility(self) -> None:
         preset = self.cbo_preset.currentText()
@@ -1687,14 +1843,27 @@ class MainWindow(QtWidgets.QMainWindow):
     def _restore_selection_state(self) -> None:
         sel_key = self._current_selection_key()
 
-        rect = self._cfg.last_canvas_rect_by_key.get(sel_key)
-        if rect is None and self._cfg.last_canvas_rect is not None:
+        # Canvas areas are restored by exact preset/precision/part key. Do not
+        # silently reuse the latest global rectangle for another part; that makes
+        # Dress Front/Back/Innerwear and other multi-part presets overwrite each
+        # other in practice. The legacy global rect is used only for old configs
+        # that have no keyed rects yet.
+        rect = self._lookup_selection_map_value(
+            self._cfg.last_canvas_rect_by_key,
+        )
+        if rect is None and not self._cfg.last_canvas_rect_by_key and self._cfg.last_canvas_rect is not None:
             rect = tuple(self._cfg.last_canvas_rect)
+            self._cfg.last_canvas_rect_by_key[sel_key] = rect
+            self._save_cfg()
         self._canvas_rect = tuple(rect) if rect is not None else None
 
-        img_path = self._cfg.last_image_path_by_key.get(sel_key)
-        if not img_path and self._cfg.last_image_path:
+        img_path = self._lookup_selection_map_value(
+            self._cfg.last_image_path_by_key,
+        )
+        if not img_path and not self._cfg.last_image_path_by_key and self._cfg.last_image_path:
             img_path = self._cfg.last_image_path
+            self._cfg.last_image_path_by_key[sel_key] = img_path
+            self._save_cfg()
 
         self._loaded = None
         if img_path:
@@ -2730,6 +2899,9 @@ def run():
         os.environ["QT_LOGGING_RULES"] = (rules + (";" if rules else "") + "qt.qpa.window=false").strip(";")
 
     app = QtWidgets.QApplication([])
+    icon = load_app_icon()
+    if not icon.isNull():
+        app.setWindowIcon(icon)
     w = MainWindow()
     w.resize(900, 650)
     w.show()

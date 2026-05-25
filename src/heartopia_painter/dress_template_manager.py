@@ -9,6 +9,8 @@ from typing import Dict, Tuple
 from PIL import Image, ImageDraw, ImageFilter
 from PySide6 import QtCore, QtGui, QtWidgets
 
+from .artpia_templates import find_artpia_part_template, save_artpia_template_files
+from .app_icon import load_app_icon
 from .game_draw_data import GAME_DRAW_PARTS_BY_PRESET
 from .image_processing import ImagePrepOptions, PixelGrid, load_and_resize_to_grid
 
@@ -320,6 +322,9 @@ class DressTemplateManager(QtWidgets.QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("Heartopia Clothing Template Manager")
+        icon = load_app_icon()
+        if not icon.isNull():
+            self.setWindowIcon(icon)
         self.resize(1220, 840)
 
         self.current_preset: str = next(iter(CLOTHING_TYPES))
@@ -532,6 +537,8 @@ class DressTemplateManager(QtWidgets.QMainWindow):
         mask_layout = QtWidgets.QVBoxLayout(mask_tab)
         self.chk_clip_mask = QtWidgets.QCheckBox("Clip to mask / transparent shape")
         self.chk_clip_mask.setChecked(False)
+        self.btn_export_artpia_guide_current = QtWidgets.QPushButton("Export Art-pia GPT guide for current part")
+        self.btn_export_artpia_guide_type = QtWidgets.QPushButton("Export Art-pia GPT guides for preset")
         self.btn_import_mask = QtWidgets.QPushButton("Import mask for current part...")
         self.btn_extract_mask = QtWidgets.QPushButton("Extract mask from game screenshot...")
         self.btn_clear_mask = QtWidgets.QPushButton("Clear current part mask")
@@ -539,6 +546,8 @@ class DressTemplateManager(QtWidgets.QMainWindow):
         self.lbl_mask.setWordWrap(True)
         self.lbl_mask.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextSelectableByMouse)
         mask_layout.addWidget(self.chk_clip_mask)
+        mask_layout.addWidget(self.btn_export_artpia_guide_current)
+        mask_layout.addWidget(self.btn_export_artpia_guide_type)
         mask_layout.addWidget(self.btn_import_mask)
         mask_layout.addWidget(self.btn_extract_mask)
         mask_layout.addWidget(self.btn_clear_mask)
@@ -645,6 +654,8 @@ class DressTemplateManager(QtWidgets.QMainWindow):
         self.cbo_fit.currentTextChanged.connect(lambda _v: self._on_preset_option_changed())
         self.chk_auto_crop.stateChanged.connect(lambda _v: self._on_preset_option_changed())
         self.chk_clip_mask.stateChanged.connect(lambda _v: self._on_preset_option_changed())
+        self.btn_export_artpia_guide_current.clicked.connect(self._on_export_artpia_guide_current)
+        self.btn_export_artpia_guide_type.clicked.connect(self._on_export_artpia_guide_type)
         self.btn_bg.clicked.connect(self._on_background)
         self.btn_import_mask.clicked.connect(self._on_import_mask)
         self.btn_extract_mask.clicked.connect(self._on_extract_mask_from_screenshot)
@@ -1098,6 +1109,64 @@ class DressTemplateManager(QtWidgets.QMainWindow):
         self._update_source_label()
         self._update_preview()
 
+    def _export_artpia_guide_for(self, clothing: str, part: str) -> dict[str, Path]:
+        paths = save_artpia_template_files(clothing, part, self.output_dir, scale=10)
+        self.mask_paths_by_key[(clothing, part)] = paths["mask"]
+        return paths
+
+    def _on_export_artpia_guide_current(self) -> None:
+        clothing = self._current_clothing()
+        part = self._current_part()
+        if find_artpia_part_template(clothing, part) is None:
+            QtWidgets.QMessageBox.warning(
+                self,
+                "Art-pia guide",
+                f"No Art-pia template data for {clothing} / {part}.",
+            )
+            return
+        try:
+            paths = self._export_artpia_guide_for(clothing, part)
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Art-pia guide export failed", str(e))
+            return
+        self.chk_clip_mask.setChecked(True)
+        self._update_mask_label()
+        self._update_preview()
+        QtWidgets.QMessageBox.information(
+            self,
+            "Art-pia guide exported",
+            "Created exact template files:\n\n"
+            f"GPT guide: {paths['guide']}\n"
+            f"Mask: {paths['mask']}",
+        )
+
+    def _on_export_artpia_guide_type(self) -> None:
+        clothing = self._current_clothing()
+        created: list[Path] = []
+        missing: list[str] = []
+        try:
+            for part in CLOTHING_TYPES[clothing]:
+                if find_artpia_part_template(clothing, part) is None:
+                    missing.append(part)
+                    continue
+                paths = self._export_artpia_guide_for(clothing, part)
+                created.extend([paths["guide"], paths["mask"]])
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Art-pia guide export failed", str(e))
+            return
+        if created:
+            self.chk_clip_mask.setChecked(True)
+            self._update_mask_label()
+            self._update_preview()
+        detail = "\n".join(str(path) for path in created)
+        if missing:
+            detail += "\n\nMissing Art-pia data for: " + ", ".join(missing)
+        QtWidgets.QMessageBox.information(
+            self,
+            "Art-pia guides exported",
+            f"Created {len(created)} files for {clothing}:\n\n{detail}",
+        )
+
     def _on_import_mask(self) -> None:
         clothing = self._current_clothing()
         part = self._current_part()
@@ -1318,6 +1387,9 @@ class DressTemplateManager(QtWidgets.QMainWindow):
 
 def run() -> None:
     app = QtWidgets.QApplication([])
+    icon = load_app_icon()
+    if not icon.isNull():
+        app.setWindowIcon(icon)
     w = DressTemplateManager()
     w.show()
     raise SystemExit(app.exec())
